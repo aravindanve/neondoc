@@ -1,7 +1,7 @@
 {
   "name": "neondoc",
   "version": "0.0.1-beta.0",
-  "description": "Beautiful API Reference docuemntation generated from OpenAPI Specification",
+  "description": "Beautiful API Reference documentation renderer for OpenAPI Specification",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
