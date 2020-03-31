@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { ScrollableManager } from './ScrollableManager';
 
-export const ScrollableSection = ({ id, children }) => {
+export const ScrollableSection = ({ id, children, offsetTop = '16px' }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -15,8 +15,15 @@ export const ScrollableSection = ({ id, children }) => {
   }, [id]);
 
   return (
-    <span id={id} ref={ref}>
+    <div
+      id={id}
+      ref={ref}
+      style={{
+        marginTop: `-${offsetTop}`,
+        paddingTop: offsetTop,
+      }}
+    >
       {children}
-    </span>
+    </div>
   );
 };

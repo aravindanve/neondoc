@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
-import { Text } from 'rebass';
 import { Spacer } from '../../components/Spacer';
 import { LayoutSidebar } from '../../components/Layout';
 import { Navigation, NavigationHeader, NavigationItem } from '../../components/Navigation';
 import { humanized } from '../../utils/string';
-import { operationsForTagName, summaryForOperation } from '../../utils/openapi';
+import { operationsForTagName } from '../../utils/openapi';
 import { OasContext } from './OasContext';
-import { MethodIcon } from '../../components/MethodIcon';
+import { OasNavigationItem } from './OasNavigationItem';
 
 export const OasSidebar = () => (
   <LayoutSidebar>
@@ -34,13 +33,7 @@ export const OasSidebar = () => (
                       <NavigationHeader>{humanized(tag.name)}</NavigationHeader>
                       {/* navigation section links */}
                       {operations.map(
-                        (operation, key) =>
-                          operation && (
-                            <NavigationItem key={key}>
-                              <MethodIcon method={operation._method}></MethodIcon>
-                              <Text as="span">{summaryForOperation(operation)}</Text>
-                            </NavigationItem>
-                          ),
+                        (operation, key) => operation && <OasNavigationItem key={key} operation={operation} />,
                       )}
                     </Navigation>
                     <Spacer />

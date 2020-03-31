@@ -9,6 +9,7 @@ import { OasContext } from './OasContext';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Loader } from '../../components/Loader';
 import { useTargetsInViewport } from '../../components/ScrollableSection';
+import { debounceTimeout } from '../../utils/events';
 
 export const initialState = {
   loading: true,
@@ -35,12 +36,14 @@ const reducer = (state, action) => {
   }
 };
 
+// eslint-disable-next-line no-restricted-globals
+const debouncedPushState = debounceTimeout((url) => history.pushState(null, '', url), 2000);
+
 export const OasDriver = ({ spec }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { targetIds } = useTargetsInViewport();
 
-  // eslint-disable-next-line no-restricted-globals
-  useEffect(() => history.pushState(null, '', `#${targetIds.shift() || ''}`), [targetIds]);
+  useEffect(() => debouncedPushState(`#${targetIds.shift() || ''}`), [targetIds]);
 
   useEffect(() => {
     setTimeout(() => {

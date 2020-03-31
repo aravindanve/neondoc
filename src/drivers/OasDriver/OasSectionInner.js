@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ScrollableSection } from '../../components/ScrollableSection';
 import { Spacer } from '../../components/Spacer';
 import { Markdown } from '../../components/Markdown';
@@ -7,13 +7,10 @@ import { SectionColor, SectionColorContent } from '../../components/SectionColor
 import { OasRequestBody } from './OasRequestBody';
 import { OasParamaters } from './OasParameters';
 import { OasResponses } from './OasResponses';
+import { useOperationId } from './useOperationId';
 
 export const OasSectionInner = ({ operation }) => {
-  const operationId = useMemo(() => operation.operationId || `${operation._method}::${operation._path}`, [
-    operation.operationId,
-    operation._method,
-    operation._path,
-  ]);
+  const { operationId } = useOperationId(operation);
 
   return (
     <ScrollableSection id={operationId}>

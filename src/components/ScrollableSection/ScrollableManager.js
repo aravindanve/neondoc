@@ -7,7 +7,7 @@ let intersectingTargetIdsChange = 'scrollablemanager:statechange';
 let observer = null;
 let observerOptions = {
   root: null, // browser viewport
-  rootMargin: '0px',
+  rootMargin: '-20px 0px',
   threshold: 0,
 };
 
