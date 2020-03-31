@@ -17,9 +17,9 @@ export const OasMediaTypeSelect = ({ defaultMediaType, mediaTypes, ...props }) =
     {!mediaTypes.length ? (
       <option>No media types&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
     ) : (
-      mediaTypes.map((mediaType) => (
+      mediaTypes.map((mediaType, key) => (
         // HACK: &nbsp;s are for sizing the select control properly
-        <option key={mediaType} value={mediaType}>
+        <option key={key} value={mediaType}>
           {mediaType}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </option>
       ))

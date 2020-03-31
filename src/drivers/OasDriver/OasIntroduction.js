@@ -7,7 +7,7 @@ import { OasContext } from './OasContext';
 export const OasIntroduction = () => (
   <OasContext.Consumer>
     {({ info }) =>
-      info && (
+      info ? (
         <>
           {/* document title */}
           {info.title && (
@@ -24,7 +24,7 @@ export const OasIntroduction = () => (
             </>
           )}
         </>
-      )
+      ) : null
     }
   </OasContext.Consumer>
 );
