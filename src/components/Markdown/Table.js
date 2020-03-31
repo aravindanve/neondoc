@@ -8,6 +8,7 @@ export const Table = ({ children, ...props }) => {
     <>
       <Box
         name="Table"
+        my={3}
         sx={{
           '& > table': {
             borderCollapse: 'collapse',

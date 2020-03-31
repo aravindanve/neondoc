@@ -2,9 +2,9 @@ import React from 'react';
 import { Button } from 'rebass';
 
 export const OasResponseCodeSelect = ({ defaultResponseCode, responseCodes, onInput, ...props }) =>
-  responseCodes.map((responseCode) => (
+  responseCodes.map((responseCode, key) => (
     <Button
-      key={responseCode}
+      key={key}
       mr={2}
       px={3}
       py={1}

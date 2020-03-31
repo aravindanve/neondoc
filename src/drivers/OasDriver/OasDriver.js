@@ -8,6 +8,7 @@ import { OasSectionOuter } from './OasSectionOuter';
 import { OasContext } from './OasContext';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Loader } from '../../components/Loader';
+import { useTargetsInViewport } from '../../components/ScrollableSection';
 
 export const initialState = {
   loading: true,
@@ -36,15 +37,25 @@ const reducer = (state, action) => {
 
 export const OasDriver = ({ spec }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { targetIds } = useTargetsInViewport();
+
+  // eslint-disable-next-line no-restricted-globals
+  useEffect(() => history.pushState(null, '', `#${targetIds.shift() || ''}`), [targetIds]);
 
   useEffect(() => {
-    RefParser.dereference(spec, (error, result) => {
-      if (error) {
-        dispatch({ type: 'error', payload: error });
-      } else {
-        dispatch({ type: 'result', payload: result });
-      }
-    });
+    setTimeout(() => {
+      dispatch({ type: 'result', payload: spec });
+    }, 1000);
+    // FIXME
+    // const start = Date.now();
+    // RefParser.dereference(spec, (error, result) => {
+    //   console.log('DEREFFED', `${Date.now() - start}ms`);
+    //   if (error) {
+    //     dispatch({ type: 'error', payload: error });
+    //   } else {
+    //     dispatch({ type: 'result', payload: result });
+    //   }
+    // });
   }, [spec]);
 
   return state.loading ? (
