@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Box, Text } from 'rebass';
 import { withAlpha } from '../../utils/color';
 import { camelcased } from '../../utils/string';
@@ -72,7 +72,23 @@ export const SectionColor = ({ title = '', verb = '', path = '', inner = false, 
             wordBreak: 'break-all',
           }}
         >
-          {path}
+          {path
+            .split('/')
+            .filter((it) => it.trim())
+            .map((segment, key) =>
+              /^{.*}$/.test(segment) ? (
+                <Fragment key={key}>
+                  <Box as="span">/</Box>
+                  <Box as="span" sx={{ color: 'danger' }}>
+                    {segment}
+                  </Box>
+                </Fragment>
+              ) : (
+                <Fragment key={key}>
+                  <Box as="span">/{segment}</Box>
+                </Fragment>
+              ),
+            )}
         </Box>
       </Box>
       {children}

@@ -32,13 +32,25 @@ export const OasSchemaNameAndType = ({
               {baseName}[
             </Text>
             <Text as="span">{name}</Text>
-            <Text as="span" sx={{ color: (t) => withAlpha(t.colors.text, 0.3) }}>
+            <Text
+              as="span"
+              sx={{
+                fontSize: '0.9em',
+                color: (t) => withAlpha(t.colors.text, 0.3),
+              }}
+            >
               ]
             </Text>
           </>
         ) : baseName ? (
           <>
-            <Text as="span" sx={{ color: (t) => withAlpha(t.colors.text, 0.3) }}>
+            <Text
+              as="span"
+              sx={{
+                fontSize: '0.9em',
+                color: (t) => withAlpha(t.colors.text, 0.3),
+              }}
+            >
               {baseName}.
             </Text>
             <Text as="span">{name}</Text>
