@@ -1,25 +1,28 @@
-import React, { forwardRef } from 'react';
-import { Link } from 'rebass';
-import { withAlpha } from '../../utils/color';
+import React from 'react';
+import { Box, Link } from 'rebass';
 
-export const NavigationItem = forwardRef(({ children, active, ...props }, ref) => (
-  <Link
-    ref={ref}
+export const NavigationItem = ({ children, ...props }) => (
+  <Box
+    as="li"
     name="NavigationItem"
-    variant="variants.nav"
-    px={3}
-    py={2}
+    px={0}
     sx={{
-      bg: active ? (t) => withAlpha(t.colors.text, 0.4) : 'muted',
-      color: active ? 'text' : 'gray',
-      transition: 'none',
-      ':visited': {
-        color: active ? 'text' : 'gray',
-        transition: 'none',
-      },
+      display: 'block',
+      listStyle: 'none',
     }}
-    {...props}
   >
-    {children}
-  </Link>
-));
+    <Link
+      variant="variants.nav"
+      py="2px"
+      sx={{
+        display: 'block',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      }}
+      {...props}
+    >
+      {children}
+    </Link>
+  </Box>
+);

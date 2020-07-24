@@ -3,13 +3,12 @@ import { Box } from 'rebass';
 
 export const Navigation = ({ children, ...props }) => (
   <Box
+    as="ul"
     name="Navigation"
+    px={0}
     sx={{
-      borderRadius: 'default',
-      overflow: 'hidden',
-      '& > *:last-of-type': {
-        borderBottom: 'none',
-      },
+      display: 'block',
+      listStyle: 'none',
     }}
     {...props}
   >

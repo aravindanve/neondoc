@@ -8,8 +8,6 @@ import { OasSectionOuter } from './OasSectionOuter';
 import { OasContext } from './OasContext';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Loader } from '../../components/Loader';
-import { useTargetsInViewport } from '../../components/ScrollableSection';
-import { debounceTimeout } from '../../utils/events';
 
 export const initialState = {
   loading: true,
@@ -36,29 +34,23 @@ const reducer = (state, action) => {
   }
 };
 
-// eslint-disable-next-line no-restricted-globals
-const debouncedPushState = debounceTimeout((url) => history.pushState(null, '', url), 2000);
-
 export const OasDriver = ({ spec }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { targetIds } = useTargetsInViewport();
-
-  useEffect(() => debouncedPushState(`#${targetIds.shift() || ''}`), [targetIds]);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch({ type: 'result', payload: spec });
     }, 1000);
     // FIXME
-    // const start = Date.now();
-    // RefParser.dereference(spec, (error, result) => {
-    //   console.log('DEREFFED', `${Date.now() - start}ms`);
-    //   if (error) {
-    //     dispatch({ type: 'error', payload: error });
-    //   } else {
-    //     dispatch({ type: 'result', payload: result });
-    //   }
-    // });
+    const start = Date.now();
+    RefParser.dereference(spec, (error, result) => {
+      console.log('DEREFFED', `${Date.now() - start}ms`);
+      if (error) {
+        dispatch({ type: 'error', payload: error });
+      } else {
+        dispatch({ type: 'result', payload: result });
+      }
+    });
   }, [spec]);
 
   return state.loading ? (

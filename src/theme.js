@@ -1,3 +1,5 @@
+import { withAlpha } from './utils/color';
+
 export const theme = {
   colors: {
     accent: '#3866FF',
@@ -104,6 +106,17 @@ export const theme = {
       transition: 'color .2s ease-out',
       textDecoration: 'none',
       cursor: 'pointer',
+      borderRadius: 'default',
+      mx: -1,
+      px: 1,
+      ':focus': {
+        outline: 'none',
+        boxShadow: (t) => `0 0 0 3px ${withAlpha(t.colors.accent, 0.5)}`,
+      },
+      ':active': {
+        outline: 'none',
+        boxShadow: 'none',
+      },
       ':hover,:focus': {
         filter: 'brightness(120%)',
       },
@@ -122,11 +135,14 @@ export const theme = {
     },
     nav: {
       variant: 'variants.link',
-      display: 'block',
       fontSize: 2,
-      bg: 'muted',
       color: 'gray',
-      borderBottom: t => `${t.colors.lightgray} solid 1px`,
+      ':visited': {
+        color: 'gray',
+      },
+      ':hover,:focus': {
+        filter: 'brightness(150%)',
+      },
     },
   },
   buttons: {
@@ -145,7 +161,7 @@ export const theme = {
       },
       ':focus': {
         outline: 'none',
-        boxShadow: t => `0 0 0 2px ${t.colors.accent}`,
+        boxShadow: (t) => `0 0 0 3px ${withAlpha(t.colors.accent, 0.5)}`,
       },
     },
     outline: {
@@ -176,9 +192,11 @@ export const theme = {
     },
     field: {
       borderColor: 'lightgray',
+      transition: 'border .1s ease-in-out, box-shadow .1s ease-in-out',
       ':focus': {
         outline: 'none',
-        boxShadow: t => `0 0 0 2px ${t.colors.accent}`,
+        border: (t) => `${t.colors.accent} solid 1px`,
+        boxShadow: (t) => `0 0 0 3px ${withAlpha(t.colors.accent, 0.5)}`,
       },
     },
     input: {

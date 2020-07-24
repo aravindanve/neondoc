@@ -12,7 +12,7 @@ export const SchemaChildren = ({ children, title = '', collapsable = false, ...p
       sx={{
         width: collapsed ? 'min-content' : 'initial',
         color: 'gray',
-        borderRadius: collapsed ? 'circle' : 'rounder',
+        borderRadius: collapsed ? '16px' : '16px',
         border: (t) => `${t.colors.lightgray} solid 1px`,
       }}
       {...props}
