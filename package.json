@@ -9,18 +9,19 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "dependencies": {},
   "devDependencies": {
-    "@apidevtools/json-schema-ref-parser": "^8.0.0",
+    "@apidevtools/json-schema-ref-parser": "^9.0.5",
     "@emotion/core": "^10.0.28",
     "@rebass/forms": "^4.0.6",
     "emotion-theming": "^10.0.27",
-    "intersection-observer": "^0.7.0",
-    "prettier": "^2.0.2",
+    "intersection-observer": "^0.11.0",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
     "react-scripts": "3.4.1",
-    "react-syntax-highlighter": "^12.2.1",
+    "react-syntax-highlighter": "^13.0.0",
     "rebass": "^4.0.7"
   },
   "eslintConfig": {
@@ -37,6 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "dependencies": {}
+  }
 }
