@@ -1,21 +1,23 @@
 import React from 'react';
-import { ScrollableSection } from '../../components/ScrollableSection';
 import { Spacer } from '../../components/Spacer';
 import { Markdown } from '../../components/Markdown';
 import { parametersForLocation } from '../../utils/openapi';
-import { SectionColor, SectionColorContent } from '../../components/SectionColor';
+import { Section, SectionContent } from '../../components/Section';
 import { OasRequestBody } from './OasRequestBody';
 import { OasParamaters } from './OasParameters';
 import { OasResponses } from './OasResponses';
 import { useOperationId } from './useOperationId';
+import { OasOperationHeader } from './OasOperationHeader';
 
 export const OasSectionInner = ({ operation }) => {
   const { operationId } = useOperationId(operation);
 
   return (
-    <ScrollableSection id={operationId}>
-      <SectionColor inner={true} title={operation.summary} verb={operation._method} path={operation._path}>
-        <SectionColorContent>
+    <>
+      <Section id={operationId}>
+        <OasOperationHeader title={operation.summary} verb={operation._method} path={operation._path} />
+        <Spacer />
+        <SectionContent>
           {/* sub-section: description */}
           {operation.description && (
             <>
@@ -41,9 +43,9 @@ export const OasSectionInner = ({ operation }) => {
           {/* sub-section: response */}
           {operation.responses && <OasResponses responses={operation.responses} />}
           <Spacer multiplier={-1} />
-        </SectionColorContent>
-      </SectionColor>
+        </SectionContent>
+      </Section>
       <Spacer />
-    </ScrollableSection>
+    </>
   );
 };

@@ -1,17 +1,29 @@
 import React from 'react';
-import { Box } from 'rebass';
+import { Box, Link } from 'rebass';
 
 export const NavigationHeader = ({ children, ...props }) => (
   <Box
+    as="li"
     name="NavigationHeader"
-    px={3}
-    py={2}
+    px={0}
     sx={{
-      bg: 'lightgray',
-      color: 'gray',
+      display: 'block',
+      listStyle: 'none',
     }}
-    {...props}
   >
-    {children}
+    <Link
+      variant="variants.nav"
+      py="2px"
+      sx={{
+        color: 'text',
+        fontWeight: 'bold',
+        ':visited': {
+          color: 'text',
+        },
+      }}
+      {...props}
+    >
+      {children}
+    </Link>
   </Box>
 );

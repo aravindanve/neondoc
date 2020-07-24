@@ -8,7 +8,7 @@ export const SectionColor = ({ title = '', verb = '', path = '', inner = false, 
   return (
     <Box
       name="SectionColor"
-      mx={inner ? [-3, -2] : [-3, 0]}
+      // mx={inner ? [-3, -2] : [-3, 0]}
       sx={{
         border: (t) => `${color(t)} solid 1px`,
         borderRadius: inner ? [0, 'rounder'] : [0, 'default'],
@@ -29,7 +29,7 @@ export const SectionColor = ({ title = '', verb = '', path = '', inner = false, 
           gridColumnGap: (t) => `${t.space[2]}px`,
           justifyItems: 'start', // hz axis
           alignItems: 'start', // vt axis
-          bg: color,
+          // bg: color,
           color: 'text',
         }}
       >
